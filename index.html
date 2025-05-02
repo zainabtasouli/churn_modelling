@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prédiction de churn client</title>
+</head>
+<body>
+    <h1>Prédiction de churn</h1>
+    <form action="/predict" method="post">
+        <label>Credit Score:</label><input type="number" name="CreditScore" required><br>
+        <label>Age:</label><input type="number" name="Age" required><br>
+        <label>Tenure:</label><input type="number" name="Tenure" required><br>
+        <label>Balance:</label><input type="number" name="Balance" step="0.01" required><br>
+        <label>Nombre de produits:</label><input type="number" name="NumOfProducts" required><br>
+        <label>Possède une carte de crédit (1: Oui, 0: Non):</label><input type="number" name="HasCrCard" min="0" max="1" required><br>
+        <label>Membre actif (1: Oui, 0: Non):</label><input type="number" name="IsActiveMember" min="0" max="1" required><br>
+        <label>Salaire estimé:</label><input type="number" name="EstimatedSalary" step="0.01" required><br>
+        <label>Genre (Male/Female):</label><input type="text" name="Gender" required><br>
+        <label>Géographie:</label>
+        <select name="Geography" required>
+            <option value="">--Sélectionnez--</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Spain">Spain</option>
+        </select><br><br>
+        
+        <input type="submit" value="Prédire">
+    </form>
+
+    {% if prediction is not none %}
+        <h2>Résultat de la prédiction: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
